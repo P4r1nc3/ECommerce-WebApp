@@ -20,6 +20,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/listProducts.html");
+        registry.addViewController("/addProduct.html");
     }
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
