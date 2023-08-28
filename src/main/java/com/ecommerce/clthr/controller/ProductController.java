@@ -24,12 +24,12 @@ public class ProductController {
         return "listProducts";
     }
 
-    @GetMapping("/")
+    @GetMapping("/addProduct")
     public String showAddProduct() {
         return "addProduct";
     }
 
-    @PostMapping ("/addP")
+    @PostMapping ("/add")
     public String saveProduct(@RequestParam("pname") String name,
                               @RequestParam("price") int price,
                               @RequestParam("desc") String description) {
