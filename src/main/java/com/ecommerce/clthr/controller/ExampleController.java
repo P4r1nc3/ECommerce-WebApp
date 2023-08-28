@@ -13,7 +13,7 @@ public class ExampleController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping("/")
+    @GetMapping("/example")
     public String exampleView(Model model) {
         Product p = new Product();
         Long id = (long) 1;
