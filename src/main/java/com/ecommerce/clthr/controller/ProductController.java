@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class ProductController {
     @Autowired
@@ -16,10 +18,9 @@ public class ProductController {
 
     @GetMapping("/listProducts")
     public String showExampleView(Model model) {
-        Product p = new Product();
-        Long id = (long) 1;
-        p = productRepository.findById(id).get();
-        model.addAttribute("product", p);
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("products", products);
+        System.out.println(products);
         return "listProducts";
     }
 
