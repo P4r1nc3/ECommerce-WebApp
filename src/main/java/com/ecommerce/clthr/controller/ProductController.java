@@ -2,10 +2,12 @@ package com.ecommerce.clthr.controller;
 
 import com.ecommerce.clthr.dto.ProductRepository;
 import com.ecommerce.clthr.model.Product;
+import com.ecommerce.clthr.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -31,17 +33,12 @@ public class ProductController {
     }
 
     @PostMapping ("/add")
-    public String saveProduct(@RequestParam("pname") String name,
+    public String saveProduct(@RequestParam("image") MultipartFile image,
+                              @RequestParam("pname") String name,
                               @RequestParam("price") int price,
                               @RequestParam("desc") String description) {
-        Product p = new Product();
-        p.setName(name);
-        p.setPrice(price);
-        p.setDescription(description);
-
-        productRepository.save(p);
-
-        return "redirect:/listProducts";
+       productService.saveProductToDB(image, name, price, description);
+       return "redirect:/listProducts";
     }
 
     @RequestMapping("/deleteProduct/{id}")
