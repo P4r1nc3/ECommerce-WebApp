@@ -11,7 +11,7 @@
 <body>
   <!--  ---------------nav--------------- -->
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <div class="container-fluid">
+    <div class="container">
       <a class="navbar-brand text-white" href="#">CLTHR</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,22 +30,28 @@
   </nav>
 
   <!--  ---------------content--------------- -->
-  <div class="col-12">
-    <h3 class="text-center">Add a product</h3>
-    <div class="container my-5 p-5" style="border:0.5px solid black; border-radius:20px;">
-      <form action="add" method="POST">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" name="pname" id="name" placeholder="Enter name" class="form-control">
-
-          <label for="price">Price</label>
-          <input type="number" name="price" id="price" placeholder="Enter price" class="form-control">
-
-          <label for="desc">Description</label>
-          <input type="text" name="desc" id="desc" placeholder="Enter description" class="form-control">
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="p-4 border rounded shadow-sm">
+          <h3 class="text-center mb-4">Add a Product</h3>
+          <form action="add" method="POST">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" name="pname" id="name" class="form-control" placeholder="Enter name">
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input type="number" name="price" id="price" class="form-control" placeholder="Enter price">
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Description</label>
+              <input type="text" name="desc" id="desc" class="form-control" placeholder="Enter description">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      </div>
     </div>
   </div>
 
