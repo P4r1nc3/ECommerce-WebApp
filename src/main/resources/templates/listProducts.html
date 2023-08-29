@@ -34,7 +34,7 @@
         <table class="table table-stiped table-hover">
             <thead>
             <tr>
-                <th scope="col">Id</th>
+                <th scope="col">Image</th>
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
                 <th scope="col">Description</th>
@@ -43,7 +43,7 @@
             </thead>
             <tbody>
                 <tr th:each="product :${products}">
-                    <td th:text="${product.id}"></td>
+                    <td><img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}" style="width: 100px;height: 100px;"></td>
                     <td th:text="${product.name}"></td>
                     <td th:text="${product.price}"></td>
                     <td th:text="${product.description}"></td>
