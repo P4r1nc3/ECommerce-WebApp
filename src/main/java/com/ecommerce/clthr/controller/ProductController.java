@@ -46,4 +46,21 @@ public class ProductController {
         productRepository.deleteById(id);
         return "redirect:/listProducts";
     }
+
+    @PostMapping("/editProduct")
+    public String editProduct(@RequestParam("id") long id,
+                              @RequestParam("newName") String name,
+                              @RequestParam("newPrice") int price,
+                              @RequestParam("newDesc") String description) {
+
+        Product p = new Product();
+        p = productRepository.findById(id).get();
+        p.setName(name);
+        p.setPrice(price);
+        p.setDescription(description);
+        productRepository.save(p);
+
+        System.out.print("hello");
+        return "redirect:/listProducts";
+    }
 }
