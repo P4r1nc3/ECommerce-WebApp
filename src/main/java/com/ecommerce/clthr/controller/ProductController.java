@@ -14,6 +14,9 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private ProductService productService;
+
     @GetMapping("/listProducts")
     public String showExampleView(Model model) {
         List<Product> products = productRepository.findAll();
