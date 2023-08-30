@@ -62,7 +62,7 @@
                                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="editProduct" method="POST">
+                                        <form action="editProduct" method="POST" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label>Product Id</label>
                                                 <input type="hidden" name="id" th:value="${product.id}">
@@ -76,6 +76,12 @@
 
                                                 <label>Product description</label>
                                                 <input type="text" class="form-control" name="newDesc" th:value="${product.description}">
+
+                                                <label>Product image</label>
+                                                <div class="d-flex align-items-center">
+                                                    <img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}" style="width: 100px; height: 100px; object-fit: cover;">
+                                                </div>
+                                                <input type="file" class="form-control" name="newImage" accept="image/*">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
