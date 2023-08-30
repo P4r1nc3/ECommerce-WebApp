@@ -33,4 +33,25 @@ public class ProductService {
 
         productRepository.save(product);
     }
+
+    public void editProduct(long id, MultipartFile image, String name, int price, String description) {
+        Product product = new Product();
+        product = productRepository.findById(id).get();
+        product.setName(name);
+        product.setPrice(price);
+        product.setDescription(description);
+
+        if (image != null && !image.isEmpty()) {
+            String fileName = StringUtils.cleanPath(image.getOriginalFilename());
+            if (fileName.contains("..")) {
+                System.out.println("not a valid file");
+            }
+            try {
+                product.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        productRepository.save(product);
+    }
 }
