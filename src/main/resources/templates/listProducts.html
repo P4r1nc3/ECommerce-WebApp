@@ -2,106 +2,106 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-    <title>CLTHR</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-</head>
-<body>
-    <!--  ---------------nav--------------- -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand text-white" href="#">CLTHR</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="listProducts">List Products</a>
-                    </li>
-                </ul>
-                <div>
-                    <a class="nav-link text-white" href="addProduct">Add Product</a>
+    <head>
+        <title>CLTHR</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    </head>
+    <body>
+        <!--  ---------------nav--------------- -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#">CLTHR</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page" href="listProducts">List Products</a>
+                        </li>
+                    </ul>
+                    <div>
+                        <a class="nav-link text-white" href="addProduct">Add Product</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <!--  ---------------table--------------- -->
-    <div class="container my-5 col-md-6">
-        <table class="table table-stiped table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Image</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Description</th>
-                <th scope="col">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr th:each="product :${products}">
-                    <td><img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}" style="width: 100px;height: 100px;"></td>
-                    <td th:text="${product.name}"></td>
-                    <td th:text="${product.price}"></td>
-                    <td th:text="${product.description}"></td>
-                    <td>
-                        <a th:href="@{/deleteProduct/{id}(id=${product.id})}"><i class="fa-regular fa-trash ms-3"></i></a>
-                        <a href="#" data-toggle="modal" th:attr="data-target='#exampleModalCenter'+*{product.id}">
-                            <i class="far fa-edit ms-3"></i>
-                        </a>
+        <!--  ---------------table--------------- -->
+        <div class="container my-5 col-md-6">
+            <table class="table table-stiped table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product :${products}">
+                        <td><img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}" style="width: 100px;height: 100px;"></td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td th:text="${product.description}"></td>
+                        <td>
+                            <a th:href="@{/deleteProduct/{id}(id=${product.id})}"><i class="fa-regular fa-trash ms-3"></i></a>
+                            <a href="#" data-toggle="modal" th:attr="data-target='#exampleModalCenter'+*{product.id}">
+                                <i class="far fa-edit ms-3"></i>
+                            </a>
 
-                        <!--  ---------------modal--------------- -->
-                        <div class="modal fade" th:id="*{'exampleModalCenter'+{product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Product</h5>
-                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="editProduct" method="POST" enctype="multipart/form-data">
-                                            <div class="form-group">
-                                                <label>Product Id</label>
-                                                <input type="hidden" name="id" th:value="${product.id}">
-                                                <input th:value="*{product.id}" class="form-control" name="id" disabled="disabled">
+                            <!--  ---------------modal--------------- -->
+                            <div class="modal fade" th:id="*{'exampleModalCenter'+{product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit Product</h5>
+                                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="editProduct" method="POST" enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <label>Product Id</label>
+                                                    <input type="hidden" name="id" th:value="${product.id}">
+                                                    <input th:value="*{product.id}" class="form-control" name="id" disabled="disabled">
 
-                                                <label>Product name</label>
-                                                <input type="text" class="form-control" name="newName" th:value="${product.name}">
+                                                    <label>Product name</label>
+                                                    <input type="text" class="form-control" name="newName" th:value="${product.name}">
 
-                                                <label>Product price</label>
-                                                <input type="text" class="form-control" name="newPrice" th:value="${product.price}">
+                                                    <label>Product price</label>
+                                                    <input type="text" class="form-control" name="newPrice" th:value="${product.price}">
 
-                                                <label>Product description</label>
-                                                <input type="text" class="form-control" name="newDesc" th:value="${product.description}">
+                                                    <label>Product description</label>
+                                                    <input type="text" class="form-control" name="newDesc" th:value="${product.description}">
 
-                                                <label>Product image</label>
-                                                <div class="d-flex align-items-center">
-                                                    <img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}" style="width: 100px; height: 100px; object-fit: cover;">
+                                                    <label>Product image</label>
+                                                    <div class="d-flex align-items-center">
+                                                        <img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}" style="width: 100px; height: 100px; object-fit: cover;">
+                                                    </div>
+                                                    <input type="file" class="form-control" name="newImage" accept="image/*">
                                                 </div>
-                                                <input type="file" class="form-control" name="newImage" accept="image/*">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </form>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <!--  ---------------scripts--------------- -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/f19bfe7f5e.js" crossorigin="anonymous"></script>
-</body>
+        <!--  ---------------scripts--------------- -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/f19bfe7f5e.js" crossorigin="anonymous"></script>
+    </body>
 </html>
