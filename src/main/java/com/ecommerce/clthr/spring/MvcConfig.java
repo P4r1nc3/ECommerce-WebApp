@@ -21,18 +21,23 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/listProducts.html");
         registry.addViewController("/addProduct.html");
+        registry.addViewController("/index.html");
     }
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**",
                         "/css/**",
                         "/js/**",
-                        "/images/**"
+                        "/images/**",
+                        "/api/**",
+                        "/resources/**"
                 )
                 .addResourceLocations(
                         "classpath:/static/css/",
                         "classpath:/static/js/",
-                        "classpath:/static/images/"
+                        "classpath:/static/images/",
+                        "classpath:/static/api/",
+                        "classpath:/resources/"
                 );
     }
 
