@@ -32,10 +32,10 @@ public class ProductController {
         return "listProducts";
     }
 
-    @GetMapping("/addProduct")
-    public String showAddProduct() {
-        return "addProduct";
-    }
+//    @GetMapping("/addProduct")
+//    public String showAddProduct() {
+//        return "addProduct";
+//    }
 
     @PostMapping ("/add")
     public String saveProduct(@RequestParam("image") MultipartFile image,
