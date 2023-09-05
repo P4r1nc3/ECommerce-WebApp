@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ShowExample {
+public class GetViewController {
 
-    @RequestMapping(value = "/fetchExample", method = RequestMethod.GET)
+    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView returnExampleView() {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("example");
-        mv.addObject("var", "Konrad");
+        mv.setViewName("addProduct");
+        // mv.addObject("var", "Konrad");
         return mv;
     }
 }
