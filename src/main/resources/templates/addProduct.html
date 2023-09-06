@@ -3,7 +3,7 @@
         <p class="h4 mb-2 text-center">Add Product</p>
     </div>
     <div class="card-body">
-        <form class="text-center border border-light p-5" action="#!">
+        <form class="text-center border border-light p-5" action="add" method="POST" enctype="multipart/form-data">
             <!--Name-->
             <input type="text" name="pname" id="name" class="form-contorl mb-4" placeholder="Product Name">
 
@@ -15,8 +15,8 @@
 
             <!--Image-->
             <div class="custom-file mb-4">
-                <input type="file" name="image" class="custom-file-input"  id="image" accept="image/*">
-                <label class="custom-file-label" for="image">Product image</label>
+                <label>Add an image</label>
+                <input type="file" class="form-control" name="image" accept="image/*">
             </div>
 
             <!--Sign in button-->
