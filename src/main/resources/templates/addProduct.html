@@ -1,65 +1,26 @@
-<!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-  <title>CLTHR</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-</head>
-<body>
-  <!--  ---------------nav--------------- -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <div class="container">
-      <a class="navbar-brand text-white" href="#">CLTHR</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="listProducts">List Products</a>
-          </li>
-        </ul>
-        <div>
-          <a class="nav-link text-white" href="addProduct">Add Product</a>
-        </div>
-      </div>
+<div class="card">
+    <div class="card-header">
+        <p class="h4 mb-2 text-center">Add Product</p>
     </div>
-  </nav>
+    <div class="card-body">
+        <form class="text-center border border-light p-5" action="add" method="POST" enctype="multipart/form-data">
+            <!--Name-->
+            <input type="text" name="pname" id="name" class="form-contorl mb-4" placeholder="Product Name">
 
-  <!--  ---------------content--------------- -->
-  <div class="container mt-4">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="p-4 border rounded shadow-sm">
-          <h3 class="text-center mb-4">Add a Product</h3>
-          <form action="add" method="POST" enctype="multipart/form-data">
-            <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" name="pname" id="name" class="form-control" placeholder="Enter name">
+            <!--Price-->
+            <input type="text" name="price" id="price" class="form-contorl mb-4" placeholder="Product Price">
+
+            <!--Description-->
+            <textarea type="text" name="desc" id="desc" class="form-control mb-4" placeholder="Product Description"></textarea>
+
+            <!--Image-->
+            <div class="custom-file mb-4">
+                <label>Add an image</label>
+                <input type="file" class="form-control" name="image" accept="image/*">
             </div>
-            <div class="mb-3">
-              <label for="price" class="form-label">Price</label>
-              <input type="number" name="price" id="price" class="form-control" placeholder="Enter price">
-            </div>
-            <div class="mb-3">
-              <label for="desc" class="form-label">Description</label>
-              <input type="text" name="desc" id="desc" class="form-control" placeholder="Enter description">
-            </div>
-            <div class="custom-file mb-3">
-              <label>Add an image</label>
-              <input type="file" class="form-control" name="image" accept="image/*">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div>
-      </div>
+
+            <!--Sign in button-->
+            <button class="btn btn-info btn-block" type="submit">Add</button>
+        </form>
     </div>
-  </div>
-
-  <!--  ---------------scripts--------------- -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-</body>
-</html>
+</div>

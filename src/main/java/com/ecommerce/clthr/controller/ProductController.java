@@ -19,6 +19,11 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/index")
+    public String showIndex () {
+        return "index";
+    }
+
     @GetMapping("/listProducts")
     public String showExampleView(Model model) {
         List<Product> products = productRepository.findAll();
@@ -27,10 +32,10 @@ public class ProductController {
         return "listProducts";
     }
 
-    @GetMapping("/addProduct")
-    public String showAddProduct() {
-        return "addProduct";
-    }
+//    @GetMapping("/addProduct")
+//    public String showAddProduct() {
+//        return "addProduct";
+//    }
 
     @PostMapping ("/add")
     public String saveProduct(@RequestParam("image") MultipartFile image,
